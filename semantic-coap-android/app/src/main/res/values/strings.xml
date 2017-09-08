@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CoAP Mobile Node</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_share">Share</string>
+    <string name="title_browse">Browse</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="details_title">Resource Attributes</string>
+</resources>
