@@ -1,0 +1,14 @@
+{ 
+	"sensors" : [],
+	"actuators" : [
+		{
+			"id": "TemperatureSensorSE95LHB",
+			"ct": 0,		
+			"rt": "http://purl.oclc.org/NET/ssnx/ssn#SensingDevice",
+			"sd": "h/FW1z/uY1J3Su+2SrWiq/vJrxSOJ9E+3DqvvvS6Tk6O8bWnJ6Vg79ViTcvFj99/11g3fUv6y43bXifQpYO5ygM=",
+			"lat": 41.15682,  
+			"lon": 16.72785,
+			"pin": 7
+		}
+	]
+}

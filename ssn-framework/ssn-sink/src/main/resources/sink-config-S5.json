@@ -1,0 +1,24 @@
+{ 
+	"sensors" : [
+		{
+			"id": "HumiditySensorHts2030LHC",
+			"ct": 0,		
+			"rt": "http://purl.oclc.org/NET/ssnx/ssn#SensingDevice",
+			"sd": "h/FW1z/uY1J3Su+2SrWiq/vJr2AfHrf8uHXeNel1BZSAqTFcT0rB3qvFmpaLljpc11g3fUv6y43bXifQpYO5ygM=",
+			"lat": 41.15553, 
+			"lon": 16.73998,
+			"pin": 0
+		}
+	],
+	"actuators" : [
+		{
+			"id": "FlashingIndicatorLHC",
+			"ct": 0,		
+			"rt": "http://purl.oclc.org/NET/ssnx/ssn#Device",
+			"sd": "h/FW1z/uY1J3Su+2SrWiq/vJrz9fLFdvjeMOt867Jpmuw/Nq3ayR+5ue9LPeq8WalotJ3bp1XlzNJ+mvcdprLXTpZq7yAA==",
+			"lat": 41.15553, 
+			"lon": 16.73998,
+			"pin": 11
+		}
+	]
+}

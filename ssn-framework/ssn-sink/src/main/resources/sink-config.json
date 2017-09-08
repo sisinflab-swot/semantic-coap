@@ -1,0 +1,24 @@
+{ 
+	"sensors" : [
+		{
+			"id": "AnemometerSensorBitLineBLV",
+			"ct": 0,		
+			"rt": "http://purl.oclc.org/NET/ssnx/ssn#SensingDevice",
+			"sd": "h/FW1z/uY1J3Su+2SrWiq/vJr1YETicHk0hXRwEbQ3h6Ugv2Xi3WtFz8+P0m1XUjt6S93DhJ6oguXd5VHg==",
+			"lat": 41.1093798,
+			"lon": 16.8774628,
+			"pin": 0
+		}
+	],
+	"actuators" : [
+		{
+			"id": "LightingIndicatorLHC",
+			"ct": 0,		
+			"rt": "http://purl.oclc.org/NET/ssnx/ssn#Device",
+			"sd": "h/FW1z/uY1J3Su+2SrWiq/vJr1Tc4dZ51yTTdac4xGNt0sx6rxZrWi4meevWeXERn1STG5+8JvktF9BVHg==",
+			"lat": 41.1093798,
+			"lon": 16.8774628,
+			"pin": 11
+		}
+	]
+}

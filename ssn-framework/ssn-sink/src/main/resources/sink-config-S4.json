@@ -1,0 +1,24 @@
+{ 
+	"sensors" : [
+		{
+			"id": "TemperatureSensorTSic306LHC",
+			"ct": 0,		
+			"rt": "http://purl.oclc.org/NET/ssnx/ssn#SensingDevice",
+			"sd": "h/FW1z/uY1J3Su+2SrWiq/vJrxSOFweC3TrvmuS6nvXAxh+ensSCvVeLNS0XP35/x3Td7C1pLzdOkp6hLp3eVR4=",
+			"lat": 41.15563, 
+			"lon": 16.73376,
+			"pin": 0
+		}
+	],
+	"actuators" : [
+		{
+			"id": "LightingIndicatorLHC",
+			"ct": 0,		
+			"rt": "http://purl.oclc.org/NET/ssnx/ssn#Device",
+			"sd": "h/FW1z/uY1J3Su+2SrWiq/vJr1Tc4dZ51yTTdac4xGNt0sx6rxZrWi4meevWeXERn1STG5+8JvktF9BVHg==",
+			"lat": 41.15563, 
+			"lon": 16.73376,
+			"pin": 11
+		}
+	]
+}
