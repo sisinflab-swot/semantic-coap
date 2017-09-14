@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.eclipse.californium.core.coap.LinkFormat;
+import org.eclipse.californium.core.coap.MediaTypeRegistry;
+
 import java.util.List;
 
 public class CoapAttributeListAdapter extends RecyclerView.Adapter<CoapAttributeListAdapter.ViewHolder> {
@@ -29,9 +32,14 @@ public class CoapAttributeListAdapter extends RecyclerView.Adapter<CoapAttribute
 
         holder.mIdView.setText(holder.mItem.mName);
 
-        for(String v : holder.mItem.mValues) {
-            String txt = holder.mContentView.getText() + v + " " ;
-            holder.mContentView.setText(txt);
+        if (holder.mItem.mName.equalsIgnoreCase(LinkFormat.CONTENT_TYPE)) {
+            String value = MediaTypeRegistry.toString(Integer.parseInt(holder.mItem.mValues.get(0)));
+            holder.mContentView.setText(value);
+        } else {
+            for (String v : holder.mItem.mValues) {
+                String txt = holder.mContentView.getText() + v + " ";
+                holder.mContentView.setText(txt);
+            }
         }
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

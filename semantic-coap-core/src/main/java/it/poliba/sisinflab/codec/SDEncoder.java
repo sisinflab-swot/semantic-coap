@@ -1,5 +1,7 @@
 package it.poliba.sisinflab.codec;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import org.toubassi.femtozip.ArrayDocumentList;
 import org.toubassi.femtozip.CompressionModel;
@@ -19,6 +21,16 @@ public class SDEncoder extends OWLEncoder {
 		}	
 	}
 	
+	public SDEncoder(DataInputStream doc) {
+		try {
+			model = new FemtoZipCompressionModel();
+	        model.load(doc);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}	
+	}
+	
 	@Override
 	public String encodeOWL(String owl) {		
 		byte[] enc = model.compress(owl.getBytes());
@@ -29,6 +41,14 @@ public class SDEncoder extends OWLEncoder {
 	public String decodeOWL(String owl) {
 		byte[] dec = this.decodeBase64(owl);
 		return new String(model.decompress(dec));
+	}
+	
+	public void saveModel(DataOutputStream out) {
+		try {
+			model.save(out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

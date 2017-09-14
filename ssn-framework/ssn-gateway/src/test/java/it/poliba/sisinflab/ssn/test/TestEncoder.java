@@ -1,6 +1,8 @@
 package it.poliba.sisinflab.ssn.test;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -24,6 +26,12 @@ public class TestEncoder {
 		
 		gzip = new GZIPEncoder();
 		sd = new SDEncoder(IOUtils.toByteArray(in));
+		
+		FileOutputStream fos = new FileOutputStream("model-ssn.dic");
+		DataOutputStream out = new DataOutputStream(fos);
+		sd.saveModel(out);
+		out.flush();
+		out.close();
 		
 		encodeTest(new File(TestEncoder.class.getResource("/sensors").toURI()));
 		encodeTest(new File(TestEncoder.class.getResource("/actuators").toURI()));

@@ -7,4 +7,62 @@
 
     <string name="action_settings">Settings</string>
     <string name="details_title">Resource Attributes</string>
+    <string name="title_activity_maps">Resource Map</string>
+    <string name="title_activity_settings">CoAP Settings</string>
+
+    <string name="coap_server_na">CoAP server N/A</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_title_ct_type">Content Type (CT)</string>
+
+    <string name="pref_header_coap">Semantic-based Attributes</string>
+    <string name="pref_title_semantic">Enable semantic-based attributes</string>
+
+    <string name="pref_title_ref_onto">Reference Ontology (RO)</string>
+    <string-array name="ref_onto_entries">
+        <item>SSN-SWoT</item>
+        <item>SSN-XG</item>
+        <item>IoT-O</item>
+    </string-array>
+    <string-array name="ref_onto_entry_values">
+        <item>http://sisinflab.poliba.it/swottools/ssn.owl#</item>
+        <item>http://purl.oclc.org/NET/ssnx/ssn#</item>
+        <item>http://www.irit.fr/recherches/MELODI/ontologies/IoT-O#</item>
+    </string-array>
+
+    <string name="pref_title_sem_desc">Semantic Description (SD)</string>
+    <string name="pref_summary_sem_desc">Build a semantic-based request</string>
+    <string name="pref_default_sem_desc">http://sisinflab.poliba.it/swottools/ssn.owl#CustomRequest</string>
+
+    <string name="pref_title_sem_task">Semantic Task (ST)</string>
+    <string-array name="sem_task_entries">
+        <item>Semantic Ranking</item>
+        <item>Concept Covering</item>
+    </string-array>
+    <string-array name="sem_task_entry_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="pref_title_sem_tresh">Semantic Threshold (SR)</string>
+    <string-array name="sem_tresh_entries">
+        <item>100</item>
+        <item>80</item>
+        <item>60</item>
+        <item>40</item>
+    </string-array>
+    <string-array name="sem_tresh_entry_values">
+        <item>100</item>
+        <item>80</item>
+        <item>60</item>
+        <item>40</item>
+    </string-array>
+
+    <string name="pref_title_ann_type">Annotation Type (AT)</string>
+
+    <string name="pref_title_geo">Enable geographical attributes</string>
+    <string name="pref_title_lat">Latitude (LT)</string>
+    <string name="pref_title_lon">Longitude (LG)</string>
+    <string name="pref_title_distance">Max Distance (MD)</string>
+
 </resources>

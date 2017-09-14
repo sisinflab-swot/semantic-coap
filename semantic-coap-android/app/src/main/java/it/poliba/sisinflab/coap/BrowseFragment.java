@@ -1,13 +1,13 @@
 package it.poliba.sisinflab.coap;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
@@ -34,6 +34,7 @@ public class BrowseFragment extends Fragment {
 
     private OnListFragmentInteractionListener mListener;
 
+    private EditText serverAddress;
     private RecyclerView recyclerView;
     private CoapBrowser mBrowser;
     private View view = null;
@@ -63,6 +64,7 @@ public class BrowseFragment extends Fragment {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_coap_resource_list, container, false);
             recyclerView = (RecyclerView) view.findViewById(R.id.list);
+            serverAddress = (EditText) view.findViewById(R.id.serverAddress);
 
             // Set the adapter
             Context context = view.getContext();
@@ -71,7 +73,7 @@ public class BrowseFragment extends Fragment {
             recyclerView.setAdapter(new CoapResourceListAdapter(new ArrayList<WebLink>(), mListener));
             recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
-            FloatingActionButton fabSearch = (FloatingActionButton) view.findViewById(R.id.fabSearch);
+            FloatingActionButton fabSearch = (FloatingActionButton) getActivity().findViewById(R.id.fabSearch);
             fabSearch.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     openServerAddressDialog(v);
@@ -97,16 +99,40 @@ public class BrowseFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String address = input.getText().toString();
-                try {
-                    mBrowser = new CoapBrowser(address);
-                    List<WebLink> resources = mBrowser.discovery();
 
-                    ((CoapResourceListAdapter)recyclerView.getAdapter()).updateValues(resources);
-                    recyclerView.getAdapter().notifyDataSetChanged();
-                } catch (Exception e) {
-                    Toast.makeText(v.getContext(), "Malformed Server Address!", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
+                ProgressDialog progress = ProgressDialog.show(getActivity(), "CoAP Discovery",
+                        "Connecting to " + address + "...", true);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        try {
+                            mBrowser = new CoapBrowser(address);
+                            List<WebLink> resources = mBrowser.discovery();
+
+                            ((CoapResourceListAdapter)recyclerView.getAdapter()).updateValues(resources);
+                            recyclerView.getAdapter().notifyDataSetChanged();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run()
+                            {
+                                if (mBrowser == null) {
+                                    serverAddress.setText(getString(R.string.coap_server_na));
+                                    Toast.makeText(v.getContext(), "Malformed Server Address!", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                    serverAddress.setText("CoAP server: " + address);
+
+                                progress.dismiss();
+                            }
+                        });
+                    }
+                }).start();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

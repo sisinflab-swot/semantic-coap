@@ -1,7 +1,5 @@
 package it.poliba.sisinflab.coap.browser;
 
-import android.webkit.URLUtil;
-
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.WebLink;
@@ -23,6 +21,7 @@ public class CoapBrowser {
 
     public List<WebLink> discovery() {
         client = new CoapClient(serverAddress + "/.well-known/core");
+        client.setTimeout(10000);
         CoapResponse resp = client.get();
         if (resp != null) {
             Set<WebLink> resources = LinkFormat.parse(resp.getResponseText());

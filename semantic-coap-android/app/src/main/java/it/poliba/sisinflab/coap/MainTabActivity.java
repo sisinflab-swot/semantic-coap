@@ -1,31 +1,32 @@
 package it.poliba.sisinflab.coap;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
 
 import org.eclipse.californium.core.WebLink;
+import org.eclipse.californium.core.coap.LinkFormat;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
+import it.poliba.sisinflab.coap.browser.AndroidSDEncoder;
+
 public class MainTabActivity extends AppCompatActivity implements OnListFragmentInteractionListener {
+
+    public static AndroidSDEncoder sd;
+    public static String onto_as_string;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -59,6 +60,25 @@ public class MainTabActivity extends AppCompatActivity implements OnListFragment
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        try {
+            InputStream in = getResources().openRawResource(R.raw.model_ssn);
+            DataInputStream dis = new DataInputStream(in);
+            sd = new AndroidSDEncoder(dis);
+            dis.close();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            InputStream in = getResources().openRawResource(R.raw.sensor_ontology);
+            onto_as_string = sd.convertStreamToString(in);
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -77,6 +97,8 @@ public class MainTabActivity extends AppCompatActivity implements OnListFragment
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -90,8 +112,12 @@ public class MainTabActivity extends AppCompatActivity implements OnListFragment
             attr.put(key, item.getAttributes().getAttributeValues(key));
         }
 
+        String[] segments = item.getURI().split("/");
+        String name = segments[segments.length-1];
+
         Intent intent = new Intent(this, DetailsActivity.class);
         Bundle extras = new Bundle();
+        extras.putString(LinkFormat.TITLE, name);
         extras.putSerializable("attributes", attr);
         intent.putExtras(extras);
         startActivity(intent);

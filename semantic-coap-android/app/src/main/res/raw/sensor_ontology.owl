@@ -1,0 +1,1835 @@
+Prefix: : <http://sisinflab.poliba.it/swottools/ssn.owl#>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <http://sisinflab.poliba.it/swottools/ssn.owl>
+
+
+AnnotationProperty: owl:minCardinality
+
+    
+Datatype: xsd:int
+
+    
+ObjectProperty: hasArea
+
+    
+ObjectProperty: hasDriving_Style
+
+    Domain: 
+        Vehicle
+    
+    Range: 
+        Driving_Style
+    
+    
+ObjectProperty: hasExtension
+
+    
+ObjectProperty: hasLamp
+
+    
+ObjectProperty: hasLocation
+
+    
+ObjectProperty: hasMeasurementAccelerometerCapability
+
+    
+ObjectProperty: hasMeasurementAnemometerCapability
+
+    
+ObjectProperty: hasMeasurementBarometerCapability
+
+    
+ObjectProperty: hasMeasurementGasCapability
+
+    
+ObjectProperty: hasMeasurementHumidityCapability
+
+    
+ObjectProperty: hasMeasurementProperty
+
+    
+ObjectProperty: hasMeasurementTemperatureCapability
+
+    
+ObjectProperty: hasMeasurementVisibilityCapability
+
+    
+ObjectProperty: hasObjectDensity
+
+    
+ObjectProperty: hasOperatingProperty
+
+    
+ObjectProperty: hasOperatingRange
+
+    
+ObjectProperty: hasPeopleDensity
+
+    
+ObjectProperty: hasPneumatic
+
+    
+ObjectProperty: hasPosition
+
+    
+ObjectProperty: hasSecure_Device
+
+    Domain: 
+        Vehicle
+    
+    Range: 
+        Secure_Device
+    
+    
+ObjectProperty: hasSpeed
+
+    Domain: 
+        Vehicle
+    
+    Range: 
+        Vehicle_Speed
+    
+    
+ObjectProperty: hasStability
+
+    
+ObjectProperty: hasSubSystem
+
+    
+ObjectProperty: hasSurvivalProperty
+
+    
+ObjectProperty: hasTemperature
+
+    
+ObjectProperty: hasToxicity
+
+    
+ObjectProperty: observes
+
+    
+Class: ABS
+
+    SubClassOf: 
+        Secure_Device
+    
+    
+Class: Acceleration
+
+    SubClassOf: 
+        FeatureOfInterest
+    
+    
+Class: AccelerationMeasurementCapability
+
+    SubClassOf: 
+        MeasurementCapability
+    
+    
+Class: Accelerometer
+
+    SubClassOf: 
+        SensingDevice
+         and (observes only Acceleration)
+         and (observes min 1 owl:Thing)
+    
+    
+Class: Accuracy
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: AcousticIndicator
+
+    SubClassOf: 
+        ActuatorDevice
+         and (hasExtension only GrowingExtension)
+         and (hasTemperature only ModerateTemperature)
+    
+    
+Class: AcousticIndicatorTypeA
+
+    SubClassOf: 
+        AcousticIndicator
+         and (hasToxicity only ModerateToxicity)
+    
+    
+Class: ActuatorDevice
+
+    SubClassOf: 
+        Device
+    
+    
+Class: Aggressive_Style
+
+    SubClassOf: 
+        Driving_Style
+    
+    
+Class: AllAltitudeTemperatureMeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (HighResolution
+             and LowAccuracy
+             and MiddleFrequency))
+         and (hasOperatingRange only CompleteAltitudeRange)
+         and (hasMeasurementProperty min 1 owl:Thing)
+         and (hasOperatingRange min 1 owl:Thing)
+    
+    SubClassOf: 
+        TemperatureMeasurementCapability
+    
+    
+Class: AllAltitudeTemperatureSensor
+
+    SubClassOf: 
+        TemperatureSensor
+         and (hasMeasurementTemperatureCapability only AllAltitudeTemperatureMeasurementCapability)
+         and (hasSubSystem only Panasonic_VRLA_LC)
+         and (hasMeasurementTemperatureCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: Altitude
+
+    SubClassOf: 
+        OperatingProperty
+    
+    
+Class: AnemometerMeasurementCapability
+
+    SubClassOf: 
+        MeasurementCapability
+    
+    
+Class: AnemometerSensor
+
+    SubClassOf: 
+        SensingDevice
+    
+    
+Class: Area
+
+    SubClassOf: 
+        EnvironmentalFeatures
+    
+    
+Class: BMP085BarometerMeasurementCapability
+
+    EquivalentTo: 
+        hasMeasurementProperty only 
+            (LowAccuracy
+             and LowMeasurementRange
+             and MiddleDetectionLimit
+             and MiddlePrecision
+             and MiddleResolution),
+        hasMeasurementProperty min 1 owl:Thing
+    
+    SubClassOf: 
+        BarometerMeasurementCapability
+    
+    
+Class: BMP085BarometerSensor
+
+    SubClassOf: 
+        BarometerSensor
+         and (hasMeasurementBarometerCapability only BMP085BarometerMeasurementCapability)
+         and (hasSubSystem only Panasonic_VRLA_LC)
+         and (hasMeasurementBarometerCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: BarometerMeasurementCapability
+
+    SubClassOf: 
+        MeasurementCapability
+    
+    
+Class: BarometerSensor
+
+    SubClassOf: 
+        SensingDevice
+    
+    
+Class: Battery
+
+    SubClassOf: 
+        EnergyDevice
+    
+    
+Class: BatteryLifetime
+
+    SubClassOf: 
+        SurvivalProperty
+    
+    
+Class: BitLineBLVAnemometerMeasurementCapability
+
+    EquivalentTo: 
+        hasMeasurementProperty only 
+            (LowPrecision
+             and LowResolution
+             and MiddleAccuracy
+             and MiddleMeasurementRange),
+        hasMeasurementProperty min 1 owl:Thing
+    
+    SubClassOf: 
+        AnemometerMeasurementCapability
+    
+    
+Class: BitLineBLVAnemometerSensor
+
+    SubClassOf: 
+        AnemometerSensor
+         and (hasMeasurementAnemometerCapability only BitLineBLVAnemometerMeasurementCapability)
+         and (hasSubSystem only Philips_FR_6LB)
+         and (hasMeasurementAnemometerCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: Blaze
+
+    SubClassOf: 
+        Event
+    
+    
+Class: BlazeRisk
+
+    SubClassOf: 
+        Event
+    
+    
+Class: Board
+
+    SubClassOf: 
+        EnergyDevice
+    
+    
+Class: CentralBuilding
+
+    SubClassOf: 
+        Polytechnic
+    
+    
+Class: CentralPosition
+
+    SubClassOf: 
+        Position
+    
+    
+Class: Clear
+
+    SubClassOf: 
+        Weather
+    
+    
+Class: Cloudy
+
+    SubClassOf: 
+        Weather
+    
+    
+Class: CompleteAltitudeRange
+
+    EquivalentTo: 
+        hasOperatingProperty only 
+            (HighAltitude
+             and LowAltitude
+             and MiddleAltitude
+             and SeaAltitude),
+        hasOperatingProperty min 1 owl:Thing
+    
+    SubClassOf: 
+        OperatingRange
+    
+    
+Class: Condition
+
+    SubClassOf: 
+        Property
+    
+    
+Class: ConstantSensitivity
+
+    SubClassOf: 
+        Sensitivity
+    
+    
+Class: DEE
+
+    SubClassOf: 
+        Polytechnic
+    
+    
+Class: DetectionLimit
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: Device
+
+    SubClassOf: 
+        System
+    
+    
+Class: Door
+
+    SubClassOf: 
+        Escape
+    
+    
+Class: Drift
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: Driving_Style
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: ESP
+
+    SubClassOf: 
+        Secure_Device
+    
+    
+Class: Economy_Car
+
+    SubClassOf: 
+        Vehicle_Typology,
+        (hasStability only 
+            (Low_Stability))
+         and (hasStability min 1 owl:Thing)
+    
+    
+Class: EnergyDevice
+
+    SubClassOf: 
+        Device
+         and (hasSurvivalProperty only SurvivalProperty)
+    
+    
+Class: EnixEnergies_RS_689
+
+    SubClassOf: 
+        LowLifetimeBattery
+    
+    
+Class: Entity
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Environment
+
+    SubClassOf: 
+        Entity
+    
+    
+Class: EnvironmentalFeatures
+
+    SubClassOf: 
+        FeatureOfInterest
+    
+    
+Class: Escape
+
+    SubClassOf: 
+        EnvironmentalFeatures
+    
+    
+Class: Even_Pace_Style
+
+    SubClassOf: 
+        Driving_Style
+    
+    
+Class: Even_Road
+
+    SubClassOf: 
+        Road_Surface
+    
+    
+Class: Event
+
+    SubClassOf: 
+        Entity
+    
+    
+Class: FS11VisibilityMeasurementCapability
+
+    EquivalentTo: 
+        hasMeasurementProperty only 
+            (LowAccuracy
+             and LowFrequency
+             and LowResolution
+             and LowSelectivity),
+        hasMeasurementProperty min 1 owl:Thing
+    
+    SubClassOf: 
+        VisibilityMeasurementCapability
+    
+    
+Class: FS11VisibilityMeterSensor
+
+    SubClassOf: 
+        VisibilityMeterSensor
+         and (hasMeasurementVisibilityCapability only FS11VisibilityMeasurementCapability)
+         and (hasSubSystem only Philips_FR_6LB)
+         and (hasMeasurementVisibilityCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: FeatureOfInterest
+
+    SubClassOf: 
+        Entity
+    
+    
+Class: FireDoor
+
+    SubClassOf: 
+        Door
+    
+    
+Class: FireExtension
+
+    SubClassOf: 
+        FeatureOfInterest
+    
+    
+Class: FireSpeed
+
+    SubClassOf: 
+        FeatureOfInterest
+    
+    
+Class: FireSuppression
+
+    SubClassOf: 
+        ActuatorDevice
+         and (hasTemperature only HighTemperature)
+         and (hasTemperature min 1 owl:Thing)
+    
+    
+Class: FireSuppressionTypeA
+
+    SubClassOf: 
+        FireSuppression
+         and (hasExtension only WideExtension)
+         and (hasSpeed only HighSpeed)
+         and (hasToxicity only HighToxicity)
+         and (hasExtension min 1 owl:Thing)
+         and (hasSpeed min 1 owl:Thing)
+         and (hasToxicity min 1 owl:Thing)
+    
+    
+Class: FireSuppressionTypeB
+
+    SubClassOf: 
+        FireSuppression
+         and (hasExtension only GrowingExtension)
+         and (hasSpeed only LowSpeed)
+         and (hasToxicity only ModerateToxicity)
+         and (hasExtension min 1 owl:Thing)
+         and (hasSpeed min 1 owl:Thing)
+         and (hasToxicity min 1 owl:Thing)
+    
+    
+Class: FlashOver
+
+    SubClassOf: 
+        Blaze
+    
+    
+Class: Fog
+
+    EquivalentTo: 
+        Weather
+         and (hasDriving_Style only 
+            (Even_Pace_Style))
+         and (hasSecure_Device only 
+            (ABS))
+         and (hasSpeed only 
+            (Low_Speed))
+    
+    SubClassOf: 
+        Weather
+    
+    
+Class: Fog_Lamp
+
+    SubClassOf: 
+        Lamp
+    
+    
+Class: Frequency
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: GasMeasurementCapability
+
+    SubClassOf: 
+        MeasurementCapability
+    
+    
+Class: GasSensor
+
+    SubClassOf: 
+        SensingDevice
+         and (observes only Toxicity)
+         and (observes min 1 owl:Thing)
+    
+    
+Class: GeneralizedBlaze
+
+    SubClassOf: 
+        Blaze
+    
+    
+Class: Good_Stability
+
+    SubClassOf: 
+        Stability
+    
+    
+Class: GrowingExtension
+
+    SubClassOf: 
+        FireExtension
+    
+    
+Class: Headlight
+
+    SubClassOf: 
+        Lamp
+    
+    
+Class: HighAccuracy
+
+    SubClassOf: 
+        Accuracy
+    
+    
+Class: HighAltitude
+
+    SubClassOf: 
+        Altitude
+    
+    
+Class: HighBatteryLifetime
+
+    SubClassOf: 
+        BatteryLifetime
+    
+    
+Class: HighDetectionLimit
+
+    SubClassOf: 
+        DetectionLimit
+    
+    
+Class: HighFrequency
+
+    SubClassOf: 
+        Frequency
+    
+    
+Class: HighHumidity
+
+    SubClassOf: 
+        Humidity
+    
+    
+Class: HighLatency
+
+    SubClassOf: 
+        Latency
+    
+    
+Class: HighLifetimeBattery
+
+    SubClassOf: 
+        Battery,
+        (hasSurvivalProperty only HighBatteryLifetime)
+    
+    
+Class: HighMeasurementRange
+
+    SubClassOf: 
+        MeasurementRange
+    
+    
+Class: HighPrecision
+
+    SubClassOf: 
+        Precision
+    
+    
+Class: HighResolution
+
+    SubClassOf: 
+        Resolution
+    
+    
+Class: HighResponseTime
+
+    SubClassOf: 
+        ResponseTime
+    
+    
+Class: HighSelectivity
+
+    SubClassOf: 
+        Selectivity
+    
+    
+Class: HighSpeed
+
+    SubClassOf: 
+        FireSpeed
+    
+    
+Class: HighTemperature
+
+    SubClassOf: 
+        Temperature
+    
+    
+Class: HighToxicity
+
+    SubClassOf: 
+        Toxicity
+    
+    
+Class: High_Density_Traffic
+
+    EquivalentTo: 
+        Traffic
+         and (hasDriving_Style only 
+            (Even_Pace_Style))
+         and (hasSecure_Device only 
+            (ABS))
+         and (hasSpeed only 
+            (Low_Speed))
+    
+    SubClassOf: 
+        Traffic
+    
+    
+Class: High_Speed
+
+    SubClassOf: 
+        Vehicle_Speed
+    
+    
+Class: High_Speed_Road
+
+    SubClassOf: 
+        Road_Condition
+    
+    
+Class: High_Wind
+
+    EquivalentTo: 
+        Wind
+         and (hasSpeed only 
+            (Low_Speed))
+    
+    SubClassOf: 
+        Wind
+    
+    
+Class: Hts2030HumiditySensor
+
+    SubClassOf: 
+        HumiditySensor
+         and (hasSubSystem only EnixEnergies_RS_689)
+         and (hasSubSystem min 1 owl:Thing),
+        hasMeasurementHumidityCapability only Hts2030MeasurementCapability,
+        hasMeasurementHumidityCapability min 1 owl:Thing
+    
+    
+Class: Hts2030MeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (HighFrequency
+             and MiddleAccuracy
+             and MiddleResolution
+             and MiddleResponseTime))
+         and (hasMeasurementProperty min 1 owl:Thing)
+    
+    SubClassOf: 
+        HumidityMeasurementCapability
+    
+    
+Class: Humidity
+
+    SubClassOf: 
+        FeatureOfInterest
+    
+    
+Class: HumidityMeasurementCapability
+
+    SubClassOf: 
+        MeasurementCapability
+    
+    
+Class: HumiditySensor
+
+    SubClassOf: 
+        SensingDevice
+         and (observes only Humidity)
+         and (observes min 1 owl:Thing)
+    
+    
+Class: HyteModHumiditySensor
+
+    SubClassOf: 
+        HumiditySensor
+         and (hasMeasurementHumidityCapability only HyteModMeasurementCapability)
+         and (hasSubSystem only EnixEnergies_RS_689)
+         and (hasMeasurementHumidityCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: HyteModMeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (HighAccuracy
+             and HighPrecision
+             and HighResolution
+             and MiddleFrequency))
+         and (hasMeasurementProperty min 1 owl:Thing)
+    
+    SubClassOf: 
+        HumidityMeasurementCapability
+    
+    
+Class: Ignition
+
+    SubClassOf: 
+        Blaze
+    
+    
+Class: InUsageLectureHall
+
+    SubClassOf: 
+        LectureHall
+    
+    
+Class: IndoorEnvironment
+
+    SubClassOf: 
+        Environment
+    
+    
+Class: LM70TemperatureMeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (HighMeasurementRange
+             and LowAccuracy
+             and LowResolution
+             and MiddleFrequency))
+         and (hasOperatingRange only LowAltitudeRange)
+         and (hasMeasurementProperty min 1 owl:Thing)
+         and (hasOperatingRange min 1 owl:Thing)
+    
+    SubClassOf: 
+        TemperatureMeasurementCapability
+    
+    
+Class: LM70TemperatureSensor
+
+    SubClassOf: 
+        TemperatureSensor
+         and (hasMeasurementTemperatureCapability only LM70TemperatureMeasurementCapability)
+         and (hasSubSystem only Panasonic_VRLA_LC)
+         and (hasMeasurementTemperatureCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: Lamp
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: LargeArea
+
+    SubClassOf: 
+        Area
+    
+    
+Class: Latency
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: LateralBuilding
+
+    SubClassOf: 
+        Polytechnic
+    
+    
+Class: LateralPosition
+
+    SubClassOf: 
+        Position
+    
+    
+Class: LectureHall
+
+    SubClassOf: 
+        IndoorEnvironment
+    
+    
+Class: LectureHall12
+
+    SubClassOf: 
+        LateralBuilding
+         and (hasArea only SmallArea)
+    
+    
+Class: LectureHallA
+
+    SubClassOf: 
+        CentralBuilding
+         and (hasArea only LargeArea)
+    
+    
+Class: LectureHallC
+
+    SubClassOf: 
+        CentralBuilding
+         and (hasArea only LargeArea)
+    
+    
+Class: LightingIndicator
+
+    SubClassOf: 
+        ActuatorDevice
+         and (hasExtension only GrowingExtension)
+         and (hasSpeed only LowSpeed)
+         and (hasTemperature only ModerateTemperature)
+         and (hasToxicity only LowToxicity)
+         and (hasExtension min 1 owl:Thing)
+         and (hasSpeed min 1 owl:Thing)
+         and (hasTemperature min 1 owl:Thing)
+         and (hasToxicity min 1 owl:Thing)
+    
+    
+Class: LightingIndicatorTypeA
+
+    SubClassOf: 
+        LightingIndicator
+    
+    
+Class: LimitedExtension
+
+    SubClassOf: 
+        FireExtension
+    
+    
+Class: Location
+
+    SubClassOf: 
+        Environment
+    
+    
+Class: LongTermDrift
+
+    SubClassOf: 
+        Drift
+    
+    
+Class: LowAccuracy
+
+    SubClassOf: 
+        Accuracy
+    
+    
+Class: LowAltitude
+
+    SubClassOf: 
+        Altitude
+    
+    
+Class: LowAltitudeRange
+
+    EquivalentTo: 
+        hasOperatingProperty only 
+            (LowAltitude
+             and SeaAltitude),
+        hasOperatingProperty min 1 owl:Thing
+    
+    SubClassOf: 
+        OperatingRange
+    
+    
+Class: LowBatteryLifetime
+
+    SubClassOf: 
+        BatteryLifetime
+    
+    
+Class: LowDetectionLimit
+
+    SubClassOf: 
+        DetectionLimit
+    
+    
+Class: LowFrequency
+
+    SubClassOf: 
+        Frequency
+    
+    
+Class: LowHumidity
+
+    SubClassOf: 
+        Humidity
+    
+    
+Class: LowLatency
+
+    SubClassOf: 
+        Latency
+    
+    
+Class: LowLifetimeBattery
+
+    SubClassOf: 
+        Battery
+         and (hasSurvivalProperty only LowBatteryLifetime)
+    
+    
+Class: LowMeasurementRange
+
+    SubClassOf: 
+        MeasurementRange
+    
+    
+Class: LowPrecision
+
+    SubClassOf: 
+        Precision
+    
+    
+Class: LowResolution
+
+    SubClassOf: 
+        Resolution
+    
+    
+Class: LowResponseTime
+
+    SubClassOf: 
+        ResponseTime
+    
+    
+Class: LowSelectivity
+
+    SubClassOf: 
+        Selectivity
+    
+    
+Class: LowSpeed
+
+    SubClassOf: 
+        FireSpeed
+    
+    
+Class: LowToxicity
+
+    SubClassOf: 
+        Toxicity
+    
+    
+Class: Low_Density_Traffic
+
+    SubClassOf: 
+        Traffic
+    
+    
+Class: Low_Speed
+
+    SubClassOf: 
+        Vehicle_Speed
+    
+    
+Class: Low_Speed_Road
+
+    EquivalentTo: 
+        Road_Condition
+         and (hasDriving_Style only 
+            (Even_Pace_Style))
+         and (hasSpeed only 
+            (Low_Speed))
+    
+    SubClassOf: 
+        Road_Condition
+    
+    
+Class: Low_Stability
+
+    SubClassOf: 
+        Stability
+    
+    
+Class: M40GasMeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (LowAccuracy
+             and LowPrecision
+             and LowResolution
+             and MiddleFrequency))
+         and (hasMeasurementProperty min 1 owl:Thing)
+    
+    SubClassOf: 
+        GasMeasurementCapability
+    
+    
+Class: M40GasSensor
+
+    SubClassOf: 
+        GasSensor
+         and (hasMeasurementGasCapability only M40GasMeasurementCapability)
+         and (hasSubSystem only Panasonic_VRLA_LC)
+         and (hasMeasurementGasCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: MX6GasMeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (HighFrequency
+             and HighResolution
+             and MiddleAccuracy
+             and MiddlePrecision))
+         and (hasMeasurementProperty min 1 owl:Thing)
+    
+    SubClassOf: 
+        GasMeasurementCapability
+    
+    
+Class: MX6GasSensor
+
+    SubClassOf: 
+        GasSensor
+         and (hasMeasurementGasCapability only MX6GasMeasurementCapability)
+         and (hasSubSystem only Panasonic_VRLA_LC)
+         and (hasMeasurementGasCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: MaintenanceSchedule
+
+    SubClassOf: 
+        OperatingProperty
+    
+    
+Class: MeasurementCapability
+
+    SubClassOf: 
+        Property
+    
+    
+Class: MeasurementProperty
+
+    SubClassOf: 
+        Property
+    
+    
+Class: MeasurementRange
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: MediumArea
+
+    SubClassOf: 
+        Area
+    
+    
+Class: MediumHighAltitudeRange
+
+    EquivalentTo: 
+        hasOperatingProperty only 
+            (HighAltitude
+             and MiddleAltitude),
+        hasOperatingProperty min 1 owl:Thing
+    
+    SubClassOf: 
+        OperatingRange
+    
+    
+Class: MiddleAccuracy
+
+    SubClassOf: 
+        Accuracy
+    
+    
+Class: MiddleAltitude
+
+    SubClassOf: 
+        Altitude
+    
+    
+Class: MiddleBatteryLifetime
+
+    SubClassOf: 
+        BatteryLifetime
+    
+    
+Class: MiddleDetectionLimit
+
+    SubClassOf: 
+        DetectionLimit
+    
+    
+Class: MiddleFrequency
+
+    SubClassOf: 
+        Frequency
+    
+    
+Class: MiddleLatency
+
+    SubClassOf: 
+        Latency
+    
+    
+Class: MiddleLifetimeBattery
+
+    SubClassOf: 
+        Battery
+         and (hasSurvivalProperty only MiddleBatteryLifetime)
+    
+    
+Class: MiddleMeasurementRange
+
+    SubClassOf: 
+        MeasurementRange
+    
+    
+Class: MiddlePrecision
+
+    SubClassOf: 
+        Precision
+    
+    
+Class: MiddleResolution
+
+    SubClassOf: 
+        Resolution
+    
+    
+Class: MiddleResponseTime
+
+    SubClassOf: 
+        ResponseTime
+    
+    
+Class: MiddleSelectivity
+
+    SubClassOf: 
+        Selectivity
+    
+    
+Class: ModerateHumidity
+
+    SubClassOf: 
+        Humidity
+    
+    
+Class: ModerateTemperature
+
+    SubClassOf: 
+        Temperature
+    
+    
+Class: ModerateToxicity
+
+    SubClassOf: 
+        Toxicity
+    
+    
+Class: Moderate_Speed
+
+    SubClassOf: 
+        Vehicle_Speed
+    
+    
+Class: NearExit
+
+    SubClassOf: 
+        Position
+    
+    
+Class: NonConstantSensitivity
+
+    SubClassOf: 
+        Sensitivity
+    
+    
+Class: Object
+
+    SubClassOf: 
+        Entity
+    
+    
+Class: ObjectDensity
+
+    SubClassOf: 
+        EnvironmentalFeatures
+    
+    
+Class: ObjectDensityHigh
+
+    SubClassOf: 
+        ObjectDensity
+    
+    
+Class: ObjectDensityLow
+
+    SubClassOf: 
+        ObjectDensity
+    
+    
+Class: ObjectDensityMedium
+
+    SubClassOf: 
+        ObjectDensity
+    
+    
+Class: Office
+
+    SubClassOf: 
+        IndoorEnvironment
+    
+    
+Class: OperatingPowerRange
+
+    SubClassOf: 
+        OperatingProperty
+    
+    
+Class: OperatingProperty
+
+    SubClassOf: 
+        Property
+    
+    
+Class: OperatingRange
+
+    SubClassOf: 
+        Property
+    
+    
+Class: Optimal_Stability
+
+    SubClassOf: 
+        Good_Stability
+    
+    
+Class: OutdoorEnvironment
+
+    SubClassOf: 
+        Environment
+    
+    
+Class: Panasonic_VRLA_LC
+
+    SubClassOf: 
+        HighLifetimeBattery
+    
+    
+Class: PanicBarDoor
+
+    SubClassOf: 
+        Door
+    
+    
+Class: PeopleDensity
+
+    SubClassOf: 
+        EnvironmentalFeatures
+    
+    
+Class: PeopleDensityHigh
+
+    SubClassOf: 
+        PeopleDensity
+    
+    
+Class: PeopleDensityLow
+
+    SubClassOf: 
+        PeopleDensity
+    
+    
+Class: Philips_FR_6LB
+
+    SubClassOf: 
+        MiddleLifetimeBattery
+    
+    
+Class: PhysicalObject
+
+    SubClassOf: 
+        Object
+    
+    
+Class: Pneumatic
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Polytechnic
+
+    SubClassOf: 
+        Location
+         and (hasArea only LargeArea)
+    
+    
+Class: Position
+
+    SubClassOf: 
+        Environment
+    
+    
+Class: Precision
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: Propagation
+
+    SubClassOf: 
+        Blaze
+    
+    
+Class: Property
+
+    SubClassOf: 
+        Quality
+    
+    
+Class: Quality
+
+    SubClassOf: 
+        Entity
+    
+    
+Class: Rain
+
+    EquivalentTo: 
+        Weather
+         and (hasDriving_Style only 
+            (Even_Pace_Style))
+         and (hasSecure_Device only 
+            (ABS
+             and ESP))
+         and (hasSpeed only 
+            (Low_Speed))
+    
+    SubClassOf: 
+        Weather
+    
+    
+Class: Resolution
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: ResponseTime
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: Ribbed_Tire
+
+    SubClassOf: 
+        Pneumatic
+    
+    
+Class: Road_Condition
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Road_Surface
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: SE95TemperatureMeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (HighAccuracy
+             and HighFrequency
+             and HighMeasurementRange
+             and HighResolution))
+         and (hasOperatingRange only MediumHighAltitudeRange)
+         and (hasMeasurementProperty min 1 owl:Thing)
+         and (hasOperatingRange min 1 owl:Thing)
+    
+    SubClassOf: 
+        TemperatureMeasurementCapability
+    
+    
+Class: SE95TemperatureSensor
+
+    SubClassOf: 
+        TemperatureSensor
+         and (hasMeasurementTemperatureCapability only SE95TemperatureMeasurementCapability)
+         and (hasSubSystem only Philips_FR_6LB)
+         and (hasMeasurementTemperatureCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: SUV
+
+    SubClassOf: 
+        Vehicle_Typology,
+        (hasStability only 
+            (Optimal_Stability))
+         and (hasStability min 1 owl:Thing)
+    
+    
+Class: SeaAltitude
+
+    SubClassOf: 
+        Altitude
+    
+    
+Class: Secure_Device
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Sedan
+
+    SubClassOf: 
+        Vehicle_Typology,
+        (hasStability only 
+            (Good_Stability))
+         and (hasStability min 1 owl:Thing)
+    
+    
+Class: Selectivity
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: SensingDevice
+
+    SubClassOf: 
+        Device
+    
+    
+Class: Sensitivity
+
+    SubClassOf: 
+        MeasurementProperty
+    
+    
+Class: ShortTermDrift
+
+    SubClassOf: 
+        Drift
+    
+    
+Class: SisinfLab
+
+    SubClassOf: 
+        DEE
+    
+    
+Class: SmallArea
+
+    SubClassOf: 
+        Area
+    
+    
+Class: SmokeSensor
+
+    SubClassOf: 
+        SensingDevice
+    
+    
+Class: Snow
+
+    EquivalentTo: 
+        Weather
+         and (hasDriving_Style only 
+            (Even_Pace_Style))
+         and (hasSecure_Device only 
+            (Snow_Chains))
+         and (hasSpeed only 
+            (Low_Speed))
+    
+    SubClassOf: 
+        Weather
+    
+    
+Class: Snow_Chains
+
+    SubClassOf: 
+        Secure_Device
+    
+    
+Class: Snow_Tire
+
+    SubClassOf: 
+        Ribbed_Tire
+    
+    
+Class: SolarPanel
+
+    SubClassOf: 
+        EnergyDevice
+    
+    
+Class: Stability
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: SurvivalProperty
+
+    SubClassOf: 
+        Property
+    
+    
+Class: SurvivalRange
+
+    SubClassOf: 
+        Property
+    
+    
+Class: System
+
+    SubClassOf: 
+        PhysicalObject
+    
+    
+Class: SystemLifetime
+
+    SubClassOf: 
+        SurvivalProperty
+    
+    
+Class: TSic306TemperatureMeasurementCapability
+
+    EquivalentTo: 
+        (hasMeasurementProperty only 
+            (HighAccuracy
+             and LowMeasurementRange
+             and MiddleFrequency
+             and MiddlePrecision
+             and MiddleResolution))
+         and (hasOperatingRange only LowAltitudeRange)
+         and (hasMeasurementProperty min 1 owl:Thing)
+         and (hasOperatingRange min 1 owl:Thing)
+    
+    SubClassOf: 
+        TemperatureMeasurementCapability
+    
+    
+Class: TSic306TemperatureSensor
+
+    SubClassOf: 
+        TemperatureSensor
+         and (hasMeasurementTemperatureCapability only TSic306TemperatureMeasurementCapability)
+         and (hasSubSystem only EnixEnergies_RS_689)
+         and (hasMeasurementTemperatureCapability min 1 owl:Thing)
+         and (hasSubSystem min 1 owl:Thing)
+    
+    
+Class: Temperature
+
+    SubClassOf: 
+        FeatureOfInterest
+    
+    
+Class: TemperatureMeasurementCapability
+
+    SubClassOf: 
+        MeasurementCapability
+    
+    
+Class: TemperatureSensor
+
+    SubClassOf: 
+        SensingDevice
+         and (observes only Temperature)
+         and (observes min 1 owl:Thing)
+    
+    
+Class: Toxicity
+
+    SubClassOf: 
+        FeatureOfInterest
+    
+    
+Class: Traditional_Tire
+
+    SubClassOf: 
+        Pneumatic
+    
+    
+Class: Traffic
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Truck
+
+    SubClassOf: 
+        Vehicle_Typology
+    
+    
+Class: Uneven_Road
+
+    EquivalentTo: 
+        Road_Surface
+         and (hasDriving_Style only 
+            (Even_Pace_Style))
+         and (hasSecure_Device only 
+            (ABS
+             and ESP))
+         and (hasSpeed only 
+            (Low_Speed))
+    
+    SubClassOf: 
+        Road_Surface
+    
+    
+Class: UnusedLectureHall
+
+    SubClassOf: 
+        LectureHall
+    
+    
+Class: Vehicle
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Vehicle_Speed
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Vehicle_Typology
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: VisibilityMeasurementCapability
+
+    SubClassOf: 
+        MeasurementCapability
+    
+    
+Class: VisibilityMeterSensor
+
+    SubClassOf: 
+        SensingDevice
+    
+    
+Class: WareHouse
+
+    SubClassOf: 
+        IndoorEnvironment
+    
+    
+Class: Weak_Wind
+
+    SubClassOf: 
+        Wind
+    
+    
+Class: Weather
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: WiTilt30AccelerationMeasurementCapability
+
+    SubClassOf: 
+        AccelerationMeasurementCapability,
+        (hasMeasurementProperty only 
+            (HighAccuracy
+             and HighDetectionLimit
+             and ShortTermDrift))
+         and (hasMeasurementProperty min 1 owl:Thing)
+    
+    
+Class: WiTilt30Accelerometer
+
+    SubClassOf: 
+        Accelerometer
+         and (hasMeasurementAccelerometerCapability min 1 owl:Thing),
+        hasMeasurementAccelerometerCapability only WiTilt30AccelerationMeasurementCapability
+    
+    
+Class: WideExtension
+
+    SubClassOf: 
+        FireExtension
+    
+    
+Class: Wind
+
+    SubClassOf: 
+        owl:Thing
+    
+    
+Class: Xenon_Lamp
+
+    SubClassOf: 
+        Lamp
+    
+    
+Class: owl:Thing

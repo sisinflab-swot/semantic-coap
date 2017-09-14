@@ -1,1 +1,3 @@
-include ':app'
+include ':app', ':owleditor'
+
+project(':owleditor').projectDir = new File('C:\\Users\\Giuseppe\\Documents\\GitHub\\physical-semantic-web\\android\\OwlEditor')
