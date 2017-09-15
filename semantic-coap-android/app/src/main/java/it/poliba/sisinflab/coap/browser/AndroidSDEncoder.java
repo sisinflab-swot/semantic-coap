@@ -26,7 +26,7 @@ public class AndroidSDEncoder extends SDEncoder {
         return Base64.decode(in, Base64.DEFAULT);
     }
 
-    public String convertStreamToString(InputStream is) throws Exception {
+    public static String convertStreamToString(InputStream is) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
         String line = null;

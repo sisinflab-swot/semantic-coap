@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin_small"
             android:textStyle="bold"
+            android:text="Attribute Name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -30,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin_small"
+            android:text="Attribute Value"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 

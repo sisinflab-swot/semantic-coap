@@ -31,8 +31,12 @@
     </string-array>
 
     <string name="pref_title_sem_desc">Semantic Description (SD)</string>
-    <string name="pref_summary_sem_desc">Build a semantic-based request</string>
-    <string name="pref_default_sem_desc">http://sisinflab.poliba.it/swottools/ssn.owl#CustomRequest</string>
+    <string name="pref_summary_sem_desc">Select a semantic-based request</string>
+    <string name="pref_default_sem_desc">UserRequest</string>
+    <string-array name="pref_sem_desc_array">
+        <item>Build new request</item>
+        <item>Select from folder</item>
+    </string-array>
 
     <string name="pref_title_sem_task">Semantic Task (ST)</string>
     <string-array name="sem_task_entries">

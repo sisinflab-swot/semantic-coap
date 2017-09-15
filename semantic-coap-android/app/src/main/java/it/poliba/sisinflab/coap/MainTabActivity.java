@@ -73,7 +73,7 @@ public class MainTabActivity extends AppCompatActivity implements OnListFragment
 
         try {
             InputStream in = getResources().openRawResource(R.raw.sensor_ontology);
-            onto_as_string = sd.convertStreamToString(in);
+            onto_as_string = AndroidSDEncoder.convertStreamToString(in);
             in.close();
         } catch (Exception e) {
             e.printStackTrace();

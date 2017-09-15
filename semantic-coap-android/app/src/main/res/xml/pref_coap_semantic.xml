@@ -8,7 +8,7 @@
         <ListPreference
             android:dependency="enable_coap_semantic"
             android:defaultValue="-1"
-            android:key="ct_type"
+            android:key="ct_key"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_title_ct_type" />
@@ -27,22 +27,23 @@
             android:defaultValue="-1"
             android:entries="@array/ref_onto_entries"
             android:entryValues="@array/ref_onto_entry_values"
-            android:key="ref_onto"
+            android:key="ro_key"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_title_ref_onto" />
 
         <Preference
             android:dependency="enable_coap_semantic"
-            android:key="sem_desc"
+            android:key="sd_key"
             android:title="@string/pref_title_sem_desc"
+            android:defaultValue="@string/pref_summary_sem_desc"
             android:summary="@string/pref_summary_sem_desc">
         </Preference>
 
         <ListPreference
             android:dependency="enable_coap_semantic"
             android:defaultValue="-1"
-            android:key="ann_type"
+            android:key="at_key"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_title_ann_type" />
@@ -52,7 +53,7 @@
             android:defaultValue="2"
             android:entries="@array/sem_task_entries"
             android:entryValues="@array/sem_task_entry_values"
-            android:key="sem_task"
+            android:key="st_key"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_title_sem_task" />
@@ -62,7 +63,7 @@
             android:defaultValue="80"
             android:entries="@array/sem_tresh_entries"
             android:entryValues="@array/sem_tresh_entry_values"
-            android:key="sem_thresh"
+            android:key="sr_key"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_title_sem_tresh" />
@@ -81,7 +82,7 @@
             android:dependency="enable_coap_geo"
             android:defaultValue="0"
             android:inputType="numberDecimal"
-            android:key="geo_lat"
+            android:key="lat_key"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -91,7 +92,7 @@
             android:dependency="enable_coap_geo"
             android:defaultValue="0"
             android:inputType="numberDecimal"
-            android:key="geo_lon"
+            android:key="lon_key"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -101,7 +102,7 @@
             android:dependency="enable_coap_geo"
             android:defaultValue="0"
             android:inputType="number"
-            android:key="max_dist"
+            android:key="md_key"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"

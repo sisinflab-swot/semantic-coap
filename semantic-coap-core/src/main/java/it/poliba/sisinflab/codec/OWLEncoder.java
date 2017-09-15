@@ -12,7 +12,7 @@ public abstract class OWLEncoder {
 	}
 	
 	public byte[] decodeBase64(String in) {
-		return Base64.getDecoder().decode(in);
+		return Base64.getDecoder().decode(in.replace("\n", ""));
 	}
 	
 	public String encodeOWL(String owl) {

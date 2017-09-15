@@ -36,10 +36,11 @@ public class CoapAttributeListAdapter extends RecyclerView.Adapter<CoapAttribute
             String value = MediaTypeRegistry.toString(Integer.parseInt(holder.mItem.mValues.get(0)));
             holder.mContentView.setText(value);
         } else {
-            for (String v : holder.mItem.mValues) {
-                String txt = holder.mContentView.getText() + v + " ";
-                holder.mContentView.setText(txt);
-            }
+            String txt = "";
+            for (String v : holder.mItem.mValues)
+                txt = txt + " " + v;
+
+            holder.mContentView.setText(txt);
         }
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

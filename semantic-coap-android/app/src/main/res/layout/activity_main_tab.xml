@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:scrollbars="vertical"
+    android:descendantFocusability="beforeDescendants"
     tools:context="it.poliba.sisinflab.coap.MainTabActivity">
 
     <android.support.design.widget.AppBarLayout

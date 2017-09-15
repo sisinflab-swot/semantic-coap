@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.eclipse.californium.core.WebLink;
@@ -34,7 +35,7 @@ public class BrowseFragment extends Fragment {
 
     private OnListFragmentInteractionListener mListener;
 
-    private EditText serverAddress;
+    private TextView serverAddress;
     private RecyclerView recyclerView;
     private CoapBrowser mBrowser;
     private View view = null;
@@ -62,9 +63,9 @@ public class BrowseFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         if (view == null) {
-            view = inflater.inflate(R.layout.fragment_coap_resource_list, container, false);
+            view = inflater.inflate(R.layout.fragment_coap_browse_list, container, false);
             recyclerView = (RecyclerView) view.findViewById(R.id.list);
-            serverAddress = (EditText) view.findViewById(R.id.serverAddress);
+            serverAddress = (TextView) view.findViewById(R.id.serverAddress);
 
             // Set the adapter
             Context context = view.getContext();
@@ -109,10 +110,8 @@ public class BrowseFragment extends Fragment {
                     {
                         try {
                             mBrowser = new CoapBrowser(address);
-                            List<WebLink> resources = mBrowser.discovery();
-
+                            List<WebLink> resources = mBrowser.discovery(getContext());
                             ((CoapResourceListAdapter)recyclerView.getAdapter()).updateValues(resources);
-                            recyclerView.getAdapter().notifyDataSetChanged();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -122,6 +121,7 @@ public class BrowseFragment extends Fragment {
                             public void run()
                             {
                                 if (mBrowser == null) {
+                                    recyclerView.getAdapter().notifyDataSetChanged();
                                     serverAddress.setText(getString(R.string.coap_server_na));
                                     Toast.makeText(v.getContext(), "Malformed Server Address!", Toast.LENGTH_SHORT).show();
                                 }

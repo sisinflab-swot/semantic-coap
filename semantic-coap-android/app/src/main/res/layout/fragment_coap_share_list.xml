@@ -8,12 +8,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:id="@+id/serverAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
-        android:inputType="none"
         android:padding="4dp"
         android:text="@string/coap_server_na"
         android:textColor="@android:color/white"
@@ -22,13 +21,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
         android:paddingTop="25dp"
-        android:name="it.poliba.sisinflab.coap.BrowseFragment"
+        android:name="it.poliba.sisinflab.coap.ShareFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="true"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
-        tools:context="it.poliba.sisinflab.coap.BrowseFragment"
+        tools:context="it.poliba.sisinflab.coap.ShareFragment"
         tools:listitem="@layout/fragment_coap_resource_item" />
 
 </android.support.design.widget.CoordinatorLayout>

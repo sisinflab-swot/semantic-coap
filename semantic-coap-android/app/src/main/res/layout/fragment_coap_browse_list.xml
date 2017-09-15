@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/serverAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="4dp"
+        android:text="@string/coap_server_na"
+        android:textColor="@android:color/white"
+        android:textSize="12dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:paddingTop="25dp"
+        android:name="it.poliba.sisinflab.coap.BrowseFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="true"
+        android:scrollbars="vertical"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="it.poliba.sisinflab.coap.BrowseFragment"
+        tools:listitem="@layout/fragment_coap_resource_item" />
+
+</android.support.design.widget.CoordinatorLayout>
+

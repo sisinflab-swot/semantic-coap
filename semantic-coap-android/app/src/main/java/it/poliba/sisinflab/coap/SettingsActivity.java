@@ -1,8 +1,11 @@
 package it.poliba.sisinflab.coap;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,12 +18,10 @@ import android.view.MenuItem;
 
 import org.eclipse.californium.core.coap.MediaTypeRegistry;
 
-import java.io.InputStream;
 import java.util.Set;
 
 import it.poliba.sisinflab.owleditor.OWLBuilderFragment;
 import it.poliba.sisinflab.owleditor.OWLEditorActivity;
-import it.poliba.sisinflab.owleditor.OWLIndividualFragment;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -123,31 +124,48 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_coap_semantic);
-            //setHasOptionsMenu(true);
 
             loadMediaType();
 
-            bindPreferenceSummaryToValue(findPreference("ct_type"));
+            bindPreferenceSummaryToValue(findPreference("ct_key"));
 
-            bindPreferenceSummaryToValue(findPreference("ref_onto"));
-            bindPreferenceSummaryToValue(findPreference("sem_task"));
-            bindPreferenceSummaryToValue(findPreference("sem_thresh"));
-            bindPreferenceSummaryToValue(findPreference("sem_desc"));
-            bindPreferenceSummaryToValue(findPreference("ann_type"));
+            bindPreferenceSummaryToValue(findPreference("ro_key"));
+            bindPreferenceSummaryToValue(findPreference("st_key"));
+            bindPreferenceSummaryToValue(findPreference("sr_key"));
+            bindPreferenceSummaryToValue(findPreference("sd_key"));
+            bindPreferenceSummaryToValue(findPreference("at_key"));
 
-            bindPreferenceSummaryToValue(findPreference("geo_lat"));
-            bindPreferenceSummaryToValue(findPreference("geo_lon"));
-            bindPreferenceSummaryToValue(findPreference("max_dist"));
+            bindPreferenceSummaryToValue(findPreference("lat_key"));
+            bindPreferenceSummaryToValue(findPreference("lon_key"));
+            bindPreferenceSummaryToValue(findPreference("md_key"));
 
-            Preference buildSD = (Preference) findPreference("sem_desc");
+            Preference buildSD = (Preference) findPreference("sd_key");
             buildSD.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(getActivity(), OWLEditorActivity.class);
-                    intent.putExtra(getString(R.string.app_style_key), R.style.AppTheme_AppBarOverlay);
-                    intent.putExtra(getString(R.string.owl_string_key), MainTabActivity.onto_as_string);
-                    intent.putExtra(getString(R.string.owl_fragment_key), OWLBuilderFragment.class.getSimpleName());
-                    startActivity(intent);
+                    new AlertDialog.Builder(getActivity())
+                    .setTitle(getString(R.string.pref_summary_sem_desc))
+                    .setItems(R.array.pref_sem_desc_array, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            switch (i) {
+                                case 0: //build new rewquest
+                                    Intent intent = new Intent(getActivity(), OWLEditorActivity.class);
+                                    intent.putExtra(getString(R.string.app_style_key), R.style.AppTheme_AppBarOverlay);
+                                    intent.putExtra(getString(R.string.owl_string_key), MainTabActivity.onto_as_string);
+                                    intent.putExtra(getString(R.string.owl_fragment_key), OWLBuilderFragment.class.getSimpleName());
+                                    startActivity(intent);
+                                    break;
+                                case 1: //select from folder
+                                    SharedPreferences.Editor prefs = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+                                    prefs.putString("sd_key", getString(R.string.pref_default_sem_desc));
+                                    prefs.commit();
+                                    break;
+                            }
+                        }
+                    })
+                    .create().show();
+
                     return true;
                 }
             });
@@ -165,11 +183,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 i++;
             }
 
-            ListPreference pref = (ListPreference) findPreference("ann_type");
+            ListPreference pref = (ListPreference) findPreference("at_key");
             pref.setEntries(entries);
             pref.setEntryValues(entryValues);
 
-            ListPreference ct_pref = (ListPreference) findPreference("ct_type");
+            ListPreference ct_pref = (ListPreference) findPreference("ct_key");
             ct_pref.setEntries(entries);
             ct_pref.setEntryValues(entryValues);
         }
