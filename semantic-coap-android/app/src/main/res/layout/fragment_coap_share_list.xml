@@ -30,5 +30,17 @@
         tools:context="it.poliba.sisinflab.coap.ShareFragment"
         tools:listitem="@layout/fragment_coap_resource_item" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        app:elevation="4dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_play_circle_white_24dp" />
+
 </android.support.design.widget.CoordinatorLayout>
 

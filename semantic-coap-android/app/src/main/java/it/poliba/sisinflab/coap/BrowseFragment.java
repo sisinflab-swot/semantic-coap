@@ -74,7 +74,8 @@ public class BrowseFragment extends Fragment {
             recyclerView.setAdapter(new CoapResourceListAdapter(new ArrayList<WebLink>(), mListener));
             recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
-            FloatingActionButton fabSearch = (FloatingActionButton) getActivity().findViewById(R.id.fabSearch);
+            FloatingActionButton fabSearch = (FloatingActionButton) view.findViewById(R.id.fabSearch);
+            fabSearch.setImageResource(android.R.drawable.ic_menu_search);
             fabSearch.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     openServerAddressDialog(v);

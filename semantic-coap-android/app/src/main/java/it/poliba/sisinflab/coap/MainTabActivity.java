@@ -137,7 +137,7 @@ public class MainTabActivity extends AppCompatActivity implements OnListFragment
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return ShareFragment.newInstance(1);
+                    return ShareFragment.newInstance();
                 case 1:
                     return BrowseFragment.newInstance();
             }
